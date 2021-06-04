@@ -19,4 +19,9 @@ There is 2 type of cards one for **vocab** (words and verbs) and another for **p
 
 (I will realease a card type example later)
 
+## Improvements
+Open to feedback.
 
+
+## Issues
+Please let me know.
