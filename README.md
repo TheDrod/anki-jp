@@ -15,7 +15,6 @@ There is 2 type of cards one for **vocab** (words and verbs) and another for **p
 
 
 ### Card Fields Example  
-![image](https://user-images.githubusercontent.com/32716474/120770207-d1d03380-c515-11eb-8e49-08cf28e59529.png)
 
 (I will realease a card type example later)
 
