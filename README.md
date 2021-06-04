@@ -24,4 +24,6 @@ Open to feedback.
 
 
 ## Issues
+* only tested in dark mode
+
 Please let me know.
