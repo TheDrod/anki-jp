@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- FRONT TEMPLATE -->
+  <div class="front-container">
+
+  <!-- Text Card -->
+  {{^Audio Card}}
+    {{^Produce Card}}
+      <!-- Recognition Card -->
+      <div class="question-wrapper">
+        <span class="phrase expression">{{Expression}}</span>
+        <span class="phrase furigana hidden">{{furigana::Reading}}</span>
+        <span class="tags hidden">{{Tags}}</span>
+      </div>
+      <div class="quest-wrapper">
+        <span class="quest">Recognition</span>
+      </div>
+      {{#Audio}}<div class="audio">{{Audio}}</div>{{/Audio}}
+    </div>
+    {{/Produce Card}}
+
+    <!-- Produce Card -->
+    {{#Produce Card}}
+    <div class="question-wrapper">
+      <div class="audio">{{Meaning}}</div>
+      <span class="tags">{{Tags}}</span>
+    </div>
+    <div class="quest-wrapper">
+      <span class="quest">Produce</span>
+    </div>
+    {{/Produce Card}}
+  {{/Audio Card}}
+
+
+    <!-- Audio Card -->
+    {{#Audio Card}}
+      <div class="question-wrapper">
+        <div class="audio">{{Audio}}</div>
+        <span class="tags">{{Tags}}</span>
+      </div>
+      <div class="quest-wrapper">
+        <span class="quest">Recognition</span>
+      </div>
+    {{/Audio Card}}
+  </div>
+
+  <!-- ----------------------------------------------------------------- -->
+  <!-- ----------------------------------------------------------------- -->
+  <script>
+    const expression = document.querySelector('.expression');
+    const furigana = document.querySelector('.furigana');
+    const tags = document.querySelector('.tags');
+    const HIDE_CLASS = 'hidden';
+    let showFurigana = false;
+
+    const toogleShowFurigana = () => {
+      showFurigana = !showFurigana;
+      if (showFurigana) {
+        expression.classList.add(HIDE_CLASS);
+        furigana.classList.remove(HIDE_CLASS);
+        tags.classList.remove(HIDE_CLASS);
+      } else {
+        expression.classList.remove(HIDE_CLASS);
+        furigana.classList.add(HIDE_CLASS);
+        tags.classList.add(HIDE_CLASS);
+      }
+    }
+
+    expression.onclick = toogleShowFurigana;
+    furigana.onclick = toogleShowFurigana;
+  </script>
+  <!-- ----------------------------------------------------------------- -->
+</body>
+</html>

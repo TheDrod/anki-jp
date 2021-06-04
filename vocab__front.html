@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card-container">
+
+    <!-- FRONT TEMPLATE -->
+    <!-- Text Card -->
+    {{^Audio Card}}{{^Produce Card}}
+      <!-- Recognition Card -->
+      <div class="front-container recognition">
+        <div class="quest-wrapper">
+          <span class="quest">Recognition</span>
+        </div>
+        <div class="question-wrapper toggler">
+          <span class="word expression">{{kanji::Reading}}</span>
+          <span class="word furigana hidden">{{furigana::Reading}}</span>
+          <span class="tags hidden">{{Tags}}</span>
+        </div>
+        {{#Audio}}<div class="audio">{{Audio}}</div>{{/Audio}}
+      </div>
+    </div>
+    {{/Produce Card}}{{/Audio Card}}
+
+      <!-- Produce Card -->
+    {{^Audio Card}}{{#Produce Card}}
+    <div class="front-container production">
+      <div class="quest-wrapper">
+        <span class="quest">Produce</span>
+      </div>
+      <div class="question-wrapper">
+        <div class="audio">{{Meaning}}</div>
+        <span class="tags">{{Tags}}</span>
+      </div>
+    </div>
+    {{/Produce Card}}{{/Audio Card}}
+
+    <!-- Audio Card -->
+    {{#Audio Card}}
+    <div class="front-container production">
+      <div class="quest-wrapper listening">
+        <span class="quest">Recognition</span>
+      </div>
+      <div class="question-wrapper">
+        <div class="audio">{{Audio}}</div>
+        <span class="tags">{{Tags}}</span>
+      </div>
+    </div>
+    {{/Audio Card}}
+  </div>
+
+  <!-- ----------------------------------------------------------------- -->
+  <!-- ----------------------------------------------------------------- -->
+  <script>
+    const toggler = document.querySelector('.toggler');
+    const expression = document.querySelector('.expression');
+    const furigana = document.querySelector('.furigana');
+    const quest = document.querySelector('.quest');
+    const tags = document.querySelector('.tags');
+
+    const modes = {
+      'kanji': 'furigana',
+      'furigana': 'kanji',
+    };
+
+    toggler.onclick = function () {
+      const currentMode = this.classList.contains('furigana') ? 'furigana' : 'kanji';
+      const newMode = modes[currentMode];
+
+      this.classList.remove(currentMode);
+      this.classList.add(newMode);
+
+      if (newMode === 'kanji') {
+        expression.classList.remove('hidden');
+        furigana.classList.add('hidden');
+        tags.classList.add('hidden');
+      } else {
+        expression.classList.add('hidden');
+        furigana.classList.remove('hidden');
+        tags.classList.remove('hidden');
+      }
+    };
+  </script>
+  <!-- ----------------------------------------------------------------- -->
+</body>
+</html>

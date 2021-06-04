@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- FRONT TEMPLATE -->
+  <div class="front-container">
+    <div class="question-wrapper">
+      <span class="word">{{furigana::Reading}}</span>
+      <span class="tags">{{Tags}}</span>
+    </div>
+
+    {{#Audio}}<div class="audio">{{Audio}}</div>{{/Audio}}
+  </div>
+
+  <!-- BACK TEMPLATE -->
+  <div class="back-container">
+    <div class="answer-wrapper">
+      <span class="answer">{{furigana::Meaning}}</span>
+      {{#Extra Meaning}}
+        <span class="answer">{{furigana::Extra Meaning}}</span>
+      {{/Extra Meaning}}
+    </div>
+
+    <div class="extra-container">
+      {{#Exemplo}}
+      <div class="extra-container-wrapper">
+        <span class="title">Exemplo</span>
+        <div class="info-wrapper kanji toggler">
+          <span class="expression">{{kanji::Exemplo}}</span>
+          <div class="furigana hidden">{{furigana::Exemplo}}</div>
+          {{#Exemplo__Meaning}}<span class="meaning hidden">{{Exemplo__Meaning}}</span>{{/Exemplo__Meaning}}
+        </div>
+        <!-- <div class="info-wrapper toggler">
+          {{#Exemplo2}}<span class="expression">{{kanji::Exemplo2}}</span>{{/Exemplo2}}
+          {{#Exemplo2__Meaning}}<span class="meaning hidden">{{Exemplo2__Meaning}}</span>{{/Exemplo2__Meaning}}
+        </div> -->
+      </div>
+      {{/Exemplo}}
+
+      {{#Particulas}}
+      <div class="extra-container-wrapper">
+        <span class="title">Particulas</span>
+        <span class="info">{{furigana::Particulas}}</span>
+      </div>
+      {{/Particulas}}
+
+      {{#Notes}}
+      <div class="extra-container-wrapper">
+        <span class="title">Notes</span>
+        <span class="info">{{furigana::Notes}}</span>
+      </div>
+      {{/Notes}}
+
+      {{#Grupo}}
+      <div class="extra-container-wrapper">
+        <span class="title">Verbo Grupo</span>: <span>{{Grupo}}</span>
+        {{#Formaて}}<span class="info">Forma -て: {{furigana:Formaて}}</span>{{/Formaて}}
+        {{#Formaい}}<span class="info">Forma -い: {{furigana:Formaい}}</span>{{/Formaい}}
+      </div>
+      {{/Grupo}}
+
+      {{#Image}}
+      <div class="extra-container-wrapper image-wrapper">
+        <image class="image">{{Image}}</image>
+      </div>
+	    {{/Image}}
+
+      <div class="hyperlink-resources">
+        <a class="link" href="http://jisho.org/words?jap={{Expression}}">Jisho</a>
+        <!-- <a class="link" href="http://ejje.weblio.jp/content/{{Expression}}">Weblio</a> -->
+        <a class="link" href=https://www.japandict.com/{{Expression}}?lang=eng">JapanDict</a>
+        <!-- <a class="link" href="http://dictionary.goo.ne.jp/srch/all/{{Expression}}/m0u/">goo</a> -->
+        <!-- <a class="link" href="http://eow.alc.co.jp/search?q={{Expression}}&ref=sa">ALC</a> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------------------- -->
+  <!-- ----------------------------------------------------------------- -->
+  <script>
+    const togglers = document.querySelectorAll('.toggler');
+
+    const modes = {
+      'kanji': 'furigana',
+      'furigana': 'kanji',
+    };
+
+    togglers.forEach((element) => {
+      let expression = null;
+      let furigana = null;
+      let meaning = null;
+
+      element.childNodes.forEach(child => {
+        if (child?.classList == undefined) return;
+
+        if (child.classList.contains('expression')) {
+          expression = child;
+          return;
+        }
+        if (child.classList.contains('furigana')) {
+          furigana = child;
+          return;
+        }
+        if (child.classList.contains('meaning')) {
+          meaning = child;
+          return;
+        }
+      });
+
+      const modesContent = {
+        'kanji': expression?.innerHTML ?? '',
+        'furigana': furigana?.innerHTML ?? '',
+      };
+
+      element.onclick = function () {
+        if (expression === null) return;
+
+        const currentMode = this.classList.contains('furigana') ? 'furigana' : 'kanji';
+        const newMode = modes[currentMode];
+
+        this.classList.remove(currentMode);
+        this.classList.add(newMode);
+
+        if (newMode === 'kanji') {
+          expression.classList.remove('hidden');
+          furigana.classList.add('hidden');
+          meaning?.classList.add('hidden');
+        } else {
+          expression.classList.add('hidden');
+          furigana.classList.remove('hidden');
+          meaning?.classList.remove('hidden');
+        }
+      };
+    });
+  </script>
+  <!-- ----------------------------------------------------------------- -->
+</body>
+</html>

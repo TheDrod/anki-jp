@@ -1,0 +1,200 @@
+:root {
+	--bg-color: #222;
+	--font-color: #f2f2f2;
+	--primary-font-color: #f2f2f2;
+	--border-color: #ececec;
+	--primary-color-500: hsl(219, 67%, 40%);
+	--primary-color-400: hsl(219, 67%, 30%);
+	--primary-font-color: #f2f2f2;
+
+	--spacing: 1em;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+
+	font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	background-color: var(--bg-color);
+  color: var(--font-color);
+
+	font-size: 18px;
+}
+
+.card {
+	margin: 0;
+	padding: 0;
+
+	text-align: center;
+	overflow-x: hidden;
+
+	background-color: var(--font-color) !important;
+	color: var(--bg-color) !important;
+}
+.card, .card.night_mode {
+	background-color: var(--bg-color) !important;
+	color: var(--font-color) !important;
+}
+
+.card-container {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	height: 100vh;
+}
+
+/* FRONT SIDE */
+.front-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	flex: 1;
+}
+.front-container .question-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 50px;
+
+	padding: calc(var(--spacing) * 2);
+}
+.front-container .question-wrapper .word {
+	font-size: 2.5rem;
+}
+.front-container .question-wrapper .phrase {
+	font-size: 1.4rem;
+	word-break: break-word;
+}
+.front-container .question-wrapper .tags {
+	font-size: .8rem;
+}
+.front-container .quest-wrapper  {
+	position: absolute;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--card-quest-color, --primary-color-500);
+	padding: calc(var(--spacing) * .2) 0;
+	width: 100%;
+	height: 2em;
+}
+.front-container .quest-wrapper .quest {
+	font-size: .8rem;
+}
+
+.front-container .audio {
+	position: absolute;
+	top: 0; left: 0;
+	/* top: calc(var(--spacing) * .2);
+	left: calc(var(--spacing) * .2); */
+}
+
+/* BACK SIDE */
+.back-container {
+	flex: 1;
+}
+
+.answer-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(var(--primary-color-500) 60%, var(--primary-color-400) 90%);
+	padding: var(--spacing);
+	margin-bottom: var(--spacing);
+}
+.answer-wrapper .answer:first-child {
+	font-weight: 600;
+	font-size: 1.4rem;
+}
+
+
+.extra-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	text-align: left;
+}
+.extra-container .extra-container-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: var(--spacing);
+	/* gap: 500px; */
+}
+.extra-container .extra-container-wrapper .title {
+	text-decoration: underline;
+	margin-bottom: var(--spacing);
+}
+.extra-container .extra-container-wrapper .info-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+.extra-container .extra-container-wrapper .info-wrapper:not(:last-child)::after {
+	content: "";
+	border-bottom: 1px solid var(--border-color);
+	opacity: .7;
+	margin-bottom: var(--spacing);
+	width: 100%;
+}
+.extra-container .extra-container-wrapper .info-wrapper .info {
+}
+
+
+.image-wrapper {
+	align-items: center;
+}
+.image-wrapper .image {
+	max-width: 300px;
+	max-height: 300px;
+}
+
+
+.hyperlink-resources {
+	display: flex;
+	padding: var(--spacing);
+	font-size: .8rem;
+	border: 1px solid var(--border-color);
+}
+.hyperlink-resources .link {
+	flex: 1;
+	margin: auto 5px;
+	border-radius: 8px;
+	border: 0;
+	font-weight: bold;
+	padding: 0.5em 1em;
+	text-align: center;
+	text-decoration: none;
+
+	background-color: #f2f2f2;
+	box-shadow: 3px 3px 0 #9c9c9c;
+	color: var(--bg-color);
+}
+.hyperlink-resources .link:hover {
+	background-color: var(--primary-color-500);
+	box-shadow: 3px 3px 0 var(--primary-color-300);
+	color: var(--primary-font-color);
+}
+
+/** CARD QUEST BACKGROUND **/
+.recognition{
+	--card-quest-color: #36465d;
+}
+.production{
+	--card-quest-color: #C5B358;
+}
+.listening{
+	--card-quest-color: #aa00ff;
+}
+
+/* AUXILIAR */
+.hidden {
+	display: none;
+}
+.separator {
+	outline: 1px solid var(--border-color);
+}
