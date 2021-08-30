@@ -1,5 +1,7 @@
 # Anki JP
 
+![image](https://user-images.githubusercontent.com/32716474/131330988-252d85cd-5951-46e1-a929-d2a001be168c.png)
+
 **Anki japanese cards template** *(wip)*
 
 
