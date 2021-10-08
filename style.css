@@ -7,7 +7,7 @@
 	--primary-color-400: hsl(219, 67%, 30%);
 	--primary-font-color: #f2f2f2;
 
-	--spacing: 1em;
+	--spacing: .6em;
 }
 
 body {
@@ -43,7 +43,7 @@ body {
 	height: 100vh;
 }
 
-/* FRONT SIDE */
+/* FRONT TEMPLATE */
 .front-container {
 	display: flex;
 	flex-direction: column;
@@ -58,27 +58,25 @@ body {
 	justify-content: center;
 	align-items: center;
 	padding: 50px;
+	font-size: 2.6rem;
 
 	padding: calc(var(--spacing) * 2);
 }
-.front-container .question-wrapper .word {
-	font-size: 2.5rem;
-}
-.front-container .question-wrapper .phrase {
-	font-size: 1.4rem;
+.front-container .question-wrapper.phrase {
+	font-size: 1.6rem;
 	word-break: break-word;
 }
 .front-container .question-wrapper .tags {
 	font-size: .8rem;
 }
-.front-container .quest-wrapper  {
+.front-container .quest-wrapper {
 	position: absolute;
 	top: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background: var(--card-quest-color, --primary-color-500);
-	padding: calc(var(--spacing) * .2) 0;
+	padding: .2em 0;
 	width: 100%;
 	height: 2em;
 }
@@ -93,7 +91,7 @@ body {
 	left: calc(var(--spacing) * .2); */
 }
 
-/* BACK SIDE */
+/* BACK TEMPLATE */
 .back-container {
 	flex: 1;
 }
@@ -104,27 +102,37 @@ body {
 	align-items: center;
 	justify-content: center;
 	background: linear-gradient(var(--primary-color-500) 60%, var(--primary-color-400) 90%);
-	padding: var(--spacing);
+	padding: calc(var(--spacing) * 2) 0;
 	margin-bottom: var(--spacing);
 }
-.answer-wrapper .answer:first-child {
+.answer-wrapper .answer {
 	font-weight: 600;
 	font-size: 1.4rem;
 }
-
+.answer-wrapper .answer.phrase {
+	font-size: 1.2rem;
+}
+.answer-wrapper .answer-extra {
+}
+.answer-wrapper .answer-extra::before {
+	content: '(';
+}
+.answer-wrapper .answer-extra::after {
+	content: ')';
+}
 
 .extra-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	text-align: left;
+	position: relative;
 }
 .extra-container .extra-container-wrapper {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	padding: var(--spacing);
-	/* gap: 500px; */
 }
 .extra-container .extra-container-wrapper .title {
 	text-decoration: underline;
@@ -138,19 +146,20 @@ body {
 	content: "";
 	border-bottom: 1px solid var(--border-color);
 	opacity: .7;
-	margin-bottom: var(--spacing);
+	margin: var(--spacing) 0;
 	width: 100%;
 }
 .extra-container .extra-container-wrapper .info-wrapper .info {
 }
 
-
 .image-wrapper {
+	display: flex;
 	align-items: center;
+	justify-content: center;
+	width: 100%;
 }
 .image-wrapper .image {
-	max-width: 300px;
-	max-height: 300px;
+	max-width: 270px;
 }
 
 
@@ -181,13 +190,13 @@ body {
 }
 
 /** CARD QUEST BACKGROUND **/
-.recognition{
+.recognition {
 	--card-quest-color: #36465d;
 }
-.production{
+.production {
 	--card-quest-color: #C5B358;
 }
-.listening{
+.listening {
 	--card-quest-color: #aa00ff;
 }
 

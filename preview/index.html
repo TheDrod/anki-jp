@@ -10,49 +10,52 @@
 <body>
   <div class="card-container">
 
-    <!-- FRONT TEMPLATE -->
-    <!-- Text Card -->
-    {{^Audio Card}}{{^Produce Card}}
-      <!-- Recognition Card -->
+    <!-- Recognition Card -->
+    {{^isAudioCard}}
+    {{^isProduceCard}}
       <div class="front-container recognition">
         <div class="quest-wrapper">
           <span class="quest">Recognition</span>
         </div>
         <div class="question-wrapper toggler">
-          <span class="word expression">{{kanji::Reading}}</span>
-          <span class="word furigana hidden">{{furigana::Reading}}</span>
+          <span class="expression">{{kanji::Reading}}</span>
+          <span class="furigana hidden">{{furigana::Reading}}</span>
           <span class="tags hidden">{{Tags}}</span>
         </div>
         {{#Audio}}<div class="audio">{{Audio}}</div>{{/Audio}}
       </div>
     </div>
-    {{/Produce Card}}{{/Audio Card}}
+    {{/isProduceCard}}
+    {{/isAudioCard}}
 
-      <!-- Produce Card -->
-    {{^Audio Card}}{{#Produce Card}}
+    <!-- Produce Card -->
+    {{^isAudioCard}}
+    {{#isProduceCard}}
     <div class="front-container production">
       <div class="quest-wrapper">
         <span class="quest">Produce</span>
       </div>
-      <div class="question-wrapper">
-        <div class="audio">{{Meaning}}</div>
+      <div class="question-wrapper phrase">
+        <div class="meaning">{{Meaning}}</div>
         <span class="tags">{{Tags}}</span>
       </div>
     </div>
-    {{/Produce Card}}{{/Audio Card}}
+    {{/isProduceCard}}
+    {{/isAudioCard}}
 
     <!-- Audio Card -->
-    {{#Audio Card}}
-    <div class="front-container production">
-      <div class="quest-wrapper listening">
-        <span class="quest">Recognition</span>
+    {{#isAudioCard}}
+    <div class="front-container listening">
+      <div class="quest-wrapper">
+        <span class="quest">Listening</span>
       </div>
       <div class="question-wrapper">
-        <div class="audio">{{Audio}}</div>
+        <div class="">{{Audio}}</div>
         <span class="tags">{{Tags}}</span>
       </div>
     </div>
-    {{/Audio Card}}
+    {{/isAudioCard}}
+
   </div>
 
   <!-- ----------------------------------------------------------------- -->
@@ -85,8 +88,7 @@
         furigana.classList.remove('hidden');
         tags.classList.remove('hidden');
       }
-    };
+    }
   </script>
-  <!-- ----------------------------------------------------------------- -->
 </body>
 </html>
